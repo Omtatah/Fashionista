@@ -1,0 +1,111 @@
+{%extends 'base.html'%}
+{% block content %} 
+{{ block.super}}
+
+<style>
+    .container{
+        font-family: 'Tangerine', cursive;
+        font-size:250%
+    }
+.post{
+    height:50px;
+    width:50px;
+    border-radius:100px;
+}
+.glyphicon{
+        position:fixed;
+        margin-top:300px;
+        border-radius:100px;
+        background-color: rgb(7, 7, 7);
+        height:10%;
+        color:white;
+        width:5%;
+        font-size:20px;
+        transition:0.5s
+    }
+    .glyphicon:hover{
+       transform: scale(1.1);
+        font-size:22px;
+    }
+    .modal{
+        font-size:35px
+    }
+  h1{
+      font-size:200%
+  }
+  .bi{
+    font-size:110%
+  }
+  .name{
+    font-size:150%
+  }
+</style>
+
+<body>
+    <div style="margin-top:230px" class="container">
+            <div class="row">
+                   
+                    <div class="card">
+                            
+                      
+                                            
+                    <img class="img-responsive" style="width:100%;"src="{{product.image.url}}"><br>
+    </div>
+    <p><img class="post" src="{{product.profile.profile_pic.url}}"><strong>{{product.owner}}</strong></p><br>
+    <p class="name">{{product.description}}</p><hr>
+    {% if profile %}
+    <button  type="button" class="btn glyphicon glyphicon-plus" data-toggle="modal" data-target="#myModal">
+        {% endif %}         
+        </button>
+</div>
+
+
+</div>
+    </div>
+    <div class="container">
+<h1 class="text-center com"><b>Discussion</b></h1><br>
+{% for comment in comments %}
+
+<img class="post" src="{{comment.user.profile.profile_pic.url}}"><strong>{{comment.user.username}}</strong></p><br>
+<p class="bi">{{comment.comment}}</p>
+<hr>
+
+
+{% endfor %}
+    {{form.media}}
+    {% load bootstrap3 %} {% load staticfiles %}
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Write a comment</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                    <form style="border:white"action="{% url 'single_product' product.id %}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                    
+                       <i><span class="rate-form"> {% bootstrap_form form%}
+                        <input type="submit" class="btn" value="Submit"></span></i>
+                      </form>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+</body>
+
+{% endblock %}

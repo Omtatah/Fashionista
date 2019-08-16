@@ -1,0 +1,170 @@
+{% load static%}
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poiret+One|Tangerine&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<style>
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    width: 100%;
+
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .o {
+    float: left;
+    padding: 20px;
+    bottom: 0;
+    font-size: 32px;
+    font-family: 'Tangerine', cursive;
+  }
+
+  .o a {
+    display: block;
+    padding-top: 20px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: 0.8s
+  }
+
+  .o a:hover {
+    font-size: 20px;
+    color: rgb(44, 44, 44);
+    text-decoration: none;
+  }
+
+  li {
+    font-family: 'Tangerine', cursive;
+  }
+
+  .u a {
+    text-decoration: none;
+    transition: 0.8s;
+    font-size: 25px;
+    padding-top: 0px
+  }
+
+  h1 {
+    font-family: 'Tangerine', cursive;
+    margin: 0;
+    margin-top: 3px;
+  }
+
+  .top {
+    background-color: whitesmoke;
+
+  }
+
+  @media screen and (max-width: 1240px) {
+    .o {
+      float: left;
+      padding: 10px;
+      bottom: 0;
+      font-size: 30px;
+      font-family: 'Tangerine', cursive;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .o {
+      float: left;
+      padding: 4px;
+      bottom: 0;
+      font-size: 28px;
+      font-family: 'Tangerine', cursive;
+    }
+  }
+
+  @media screen and (max-width: 759px) {
+    .o {
+      float: left;
+      padding: 12px;
+      bottom: 0;
+      font-size: 25px;
+      font-family: 'Tangerine', cursive;
+    }
+  }
+
+  @media screen and (max-width: 679px) {
+    .o {
+      float: left;
+      padding: 8px;
+      bottom: 0;
+      font-size: 28px;
+      font-family: 'Tangerine', cursive;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    .o {
+      float: left;
+      padding: 3px;
+      bottom: 0;
+      font-size: 20px;
+      font-family: 'Tangerine', cursive;
+    }
+  }
+</style>
+<nav class="navbar-fixed-top" style="background-color: white;">
+  <div class="row">
+    <ul class="top" style="padding-left: 2%; padding-right: 2%;">
+      {% if user.is_authenticated %}
+      <li style="font-size: 500%;margin:0"><b>Fashion</b></li>
+      {% else %}
+      <li style="font-size: 300%;margin:0"><b>Sign up or login to post a product</b></li>
+      {% endif %}
+      {% if user.is_authenticated %}
+      <li class="u" style="float:right"><a href="/logout">Logout</a></li>
+      <li class="u" style="float:right"><a href="{% url 'profile' user.id %}">{% if request.user.profile %}<img
+            style="height:35px;width:35px;border-radius:100px" src="{{request.user.profile.profile_pic.url}}">{% endif%}
+          {{request.user.username}}</a></li>
+
+      {% else %}
+      <li class="u" style="float:right"><a href="accounts/login">sign up/register</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div id="toka" class="row">
+    <div class="col-md-3"></div>
+    <div style="text-align: center;" class="col-md-8">
+      <ul>
+        <li class="o"><a href="/">Home</a></li>
+        <li class="o"><a href="{% url 'trend' %}">Trending</a></li>
+        <li class="o"><a href="{% url 'category' 'Menswear' %}">Menswear</a></li>
+        <li class="o"><a href="{% url 'category' 'womenswear' %}">Womenswear</a></li>
+        {% if user.is_authenticated %}
+        <li class="o"><a href="{% url 'favourite' request.user.id %}">Favourites</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="col-md-0"></div>
+  </div>
+</nav>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- <script>
+  $(document).ready(function () {
+    $('*').click(function () {
+      $("#toka").hide();
+      alert('hey');
+    })
+    $(document).scrollTop(function () {
+      $("*").show();
+      alert('ret')
+    })
+  })
+</script> -->

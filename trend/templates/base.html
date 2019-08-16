@@ -1,0 +1,67 @@
+{% load bootstrap3 %}
+
+{% load static%}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Fashion</title>
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+
+  {% block styles %}
+
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link
+    href="https://fonts.googleapis.com/css?family=Abril+Fatface|Alfa+Slab+One|Cinzel|Courgette|Monda|Open+Sans+Condensed:300|Play|Rajdhani|Signika|Stylish&display=swap"
+    rel="stylesheet">
+
+  {% endblock %}
+
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  {% block content %} {%endblock%}
+
+  {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %}
+  {% endblock %}
+  <style>
+    .footer {
+      font-family: 'Tangerine', cursive;
+      bottom: 0;
+      height: 100%;
+      margin-top: 20%;
+      text-align: center;
+      background-color: rgb(238, 237, 237)
+    }
+
+    p {
+      font-size: 25px;
+    }
+  </style>
+  <div class="footer">
+    <div class="container">
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <h2><b>Contacts us</b></h2>
+        <p>Twitter @Fashionista</p>
+        <p>Instagram @Fashionista</p>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6">
+        <h2><b>Locations</b></h2>
+        <p>Kenya</p>
+        <p>China</p>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>
